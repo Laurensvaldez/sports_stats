@@ -43,10 +43,19 @@ print("_____________________________________________________")
 # The following block of code will be used for the user to provide input and to use it as a search request.
 
 def search_request():
-    request_input = input("Which player would you like to look up? ")
+    extension_input = ("\nIf you want to quit, fill in 'q'. >>> ")
+    request_input = input("Which player would you like to look up? Please fill in the last name of the player. " +
+                          extension_input)
 
     for item in all_players:
-        if item.first == request_input:
-            print(item.fullname())
-
+        if item.last in request_input.lower():
+            print("Full name of player: " + item.fullname().title())
+            print("Batting average: " + str(round(item.average_hit(), 3)))
+            break
+        elif item.last not in request_input.lower():
+            print("The requested name cannot be found, please fill in a correct last name.")
+            search_request()
+        else:
+            if request_input.lower() == 'q' or 'Q':
+                break
 search_request()
