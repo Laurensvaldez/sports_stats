@@ -40,3 +40,13 @@ print("\nLow batting avg. .199 or less:")
 for player in low_batting_avg:
     print(player)
 print("_____________________________________________________")
+# The following block of code will be used for the user to provide input and to use it as a search request.
+
+def search_request():
+    request_input = input("Which player would you like to look up? ")
+
+    for item in all_players:
+        if item.first == request_input:
+            print(item.fullname())
+
+search_request()
