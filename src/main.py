@@ -17,7 +17,7 @@ mid_batting_avg = []
 low_batting_avg = []
 
 print("_____________________________________________________")
-# The next for loop will add players to the top tier list "high_batting_avg
+# The next for loop will add players to the top tier list of "high, mid or low batting averages"
 for player in all_players:
     average_hitting = player.average_hit()
     name_hitter = player.fullname()
@@ -39,4 +39,4 @@ for player in mid_batting_avg:
 print("\nLow batting avg. .199 or less:")
 for player in low_batting_avg:
     print(player)
-
+print("_____________________________________________________")
