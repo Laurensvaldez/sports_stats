@@ -46,16 +46,23 @@ def search_request():
     extension_input = ("\nIf you want to quit, fill in 'q'. >>> ")
     request_input = input("Which player would you like to look up? Please fill in the last name of the player. " +
                           extension_input)
+    #sanatized input (variabel aanmaken)
+    # list maken van matches en die daar in stoppen, vervolgens dit uitprinten
+    # als len > 0: dan block of code vervolgen
 
-    for item in all_players:
-        if item.last in request_input.lower():
-            print("Full name of player: " + item.fullname().title())
-            print("Batting average: " + str(round(item.average_hit(), 3)))
-            break
-        elif item.last not in request_input.lower():
-            print("The requested name cannot be found, please fill in a correct last name.")
-            search_request()
-        else:
-            if request_input.lower() == 'q' or 'Q':
-                break
+    if request_input == 'q' or request_input == "":
+        print("Thank you. Bye.")
+    else:
+    #     for item in all_players:
+    #         if item.last in request_input.lower():
+    #             print("Full name of player: " + item.fullname().title())
+    #             print("Batting average: " + str(round(item.average_hit(), 3)))
+    #             break
+            # else:
+            #     print("Player not found.")
+    #     elif request_input.lower() == 'q':
+    #         break
+    #     else:
+    #         print("No player with that last name was found.")
+    #         break
 search_request()

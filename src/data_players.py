@@ -27,3 +27,4 @@ all_players = [
     Player("tyler", "wade", "nyy", "ss", 36, 66, 8, 11, 4, 0, 1, 5, 4, 23, 1, 0),
     Player("neil", "walker", "nyy", "1b", 113, 347, 48, 76, 12, 1, 11, 46, 42, 87, 0, 0),
 ]
+
