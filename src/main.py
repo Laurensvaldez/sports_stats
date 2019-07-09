@@ -50,19 +50,29 @@ def search_request():
     # list maken van matches en die daar in stoppen, vervolgens dit uitprinten
     # als len > 0: dan block of code vervolgen
 
+    def retry_request():
+        question = input("Would you like to search for another play? y/n > ")
+        print(question)
+        for answer in question:
+            if answer.lower() == 'y':
+                search_request()
+
+
     if request_input == 'q' or request_input == "":
         print("Thank you. Bye.")
     else:
-    #     for item in all_players:
-    #         if item.last in request_input.lower():
-    #             print("Full name of player: " + item.fullname().title())
-    #             print("Batting average: " + str(round(item.average_hit(), 3)))
-    #             break
+        for item in all_players:
+            if item.last in request_input.lower():
+                print("Full name of player: " + item.fullname().title())
+                print("Batting average: " + str(round(item.average_hit(), 3)))
+                retry_request()
             # else:
-            #     print("Player not found.")
+            # print("Player not found.")
     #     elif request_input.lower() == 'q':
     #         break
     #     else:
     #         print("No player with that last name was found.")
     #         break
+
+
 search_request()
