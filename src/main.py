@@ -42,7 +42,12 @@ for player in low_batting_avg:
 print("_____________________________________________________")
 # The following block of code will be used for the user to provide input and to use it as a search request.
 
+# adding a empty list to add players that are found to it
+found_players = []
+
 def search_request():
+
+
     extension_input = ("\nIf you want to quit, fill in 'q'. >>> ")
     request_input = input("Which player would you like to look up? Please fill in the last name of the player. " +
                           extension_input)
@@ -50,21 +55,29 @@ def search_request():
     # list maken van matches en die daar in stoppen, vervolgens dit uitprinten
     # als len > 0: dan block of code vervolgen
 
+
     def retry_request():
-        question = input("Would you like to search for another play? y/n > ")
-        print(question)
+        question = input("Would you like to search for another player? y/n > ")
+
         for answer in question:
             if answer.lower() == 'y':
                 search_request()
+            elif answer.lower() == 'n':
+                print("Thank you for using my services.")
+            else:
+                print("Program will be stopped because you did not fill in a valid answer.")
+                break
 
 
-    if request_input == 'q' or request_input == "":
+
+    if request_input == 'q'or request_input == "":
         print("Thank you. Bye.")
     else:
         for item in all_players:
             if item.last in request_input.lower():
                 print("Full name of player: " + item.fullname().title())
                 print("Batting average: " + str(round(item.average_hit(), 3)))
+                found_players.append(item.fullname().title())
                 retry_request()
             # else:
             # print("Player not found.")
@@ -74,5 +87,10 @@ def search_request():
     #         print("No player with that last name was found.")
     #         break
 
-
 search_request()
+
+
+# The text to inform the user which players were found and added to the found list
+print("The following players were found and added to the found players list: ")
+for name in found_players:
+    print(name)
