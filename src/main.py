@@ -3,7 +3,7 @@ from data_players import all_players # works
 from player import Player
 
 # Testing if the import of the list works
-print("Let's test the array by printing the length of the list.")
+print("Lets test the array by printing the length of the list.")
 print(len(all_players))
 
 """
@@ -12,6 +12,7 @@ their batting avg. \n
 The groups will be between .300 - .500 / .200 - .299 / .000 - .199
 """
 
+# Adding empty lists in which the names of the players will be added to depending on their batting avg.
 high_batting_avg = []
 mid_batting_avg = []
 low_batting_avg = []
@@ -42,20 +43,20 @@ for player in low_batting_avg:
 print("_____________________________________________________")
 # The following block of code will be used for the user to provide input and to use it as a search request.
 
-# adding a empty list to add players that are found to it
+# Adding a empty list to add players that are found to it
 found_players = []
 
+
 def search_request():
+    # Defining a function to start the search request of the user
 
-
-    extension_input = ("\nIf you want to quit, fill in 'q'. >>> ")
+    # Writing the request input for the user
+    extension_input = "\nIf you want to quit, fill in 'q'. >>> "
+    # Adding a extended part to the request for input
     request_input = input("Which player would you like to look up? Please fill in the last name of the player. " +
                           extension_input)
-    #sanatized input (variabel aanmaken)
-    # list maken van matches en die daar in stoppen, vervolgens dit uitprinten
-    # als len > 0: dan block of code vervolgen
 
-
+    # Sanitizing the input of the user
     def retry_request():
         question = input("Would you like to search for another player? y/n > ")
 
@@ -65,30 +66,26 @@ def search_request():
             elif answer.lower() == 'n':
                 print("Thank you for using my services.")
             else:
-                print("Program will be stopped because you did not fill in a valid answer.")
+                print("Program will be terminated, you did not fill in a valid answer.")
                 break
 
-
-
-    if request_input == 'q'or request_input == "":
+    # If statement that checks what the input of the user turned out
+    # In case that the user fills in 'q', the program will be stopped
+    if request_input == 'q' or request_input == "":
         print("Thank you. Bye.")
     else:
+        # Else: the program will concatenate through the list to
+        # check  the input of the user and if it matches to any names in the list
         for item in all_players:
             if item.last in request_input.lower():
                 print("Full name of player: " + item.fullname().title())
                 print("Batting average: " + str(round(item.average_hit(), 3)))
-                found_players.append(item.fullname().title())
+                found_players.append(item.fullname().title() + " " + str(round(item.average_hit(), 3)))
                 retry_request()
-            # else:
-            # print("Player not found.")
-    #     elif request_input.lower() == 'q':
-    #         break
-    #     else:
-    #         print("No player with that last name was found.")
-    #         break
+
 
 search_request()
-
+# Start the function by calling it
 
 # The text to inform the user which players were found and added to the found list
 print("The following players were found and added to the found players list: ")
