@@ -85,7 +85,7 @@ def search_request():
 
 
 search_request()
-# Start the function by calling it
+# Start the function by calling it.
 
 # The text to inform the user which players were found and added to the found list
 print("The following players were found and added to the found players list: ")
