@@ -27,6 +27,12 @@ class Player:
     def fullname(self):
         return '{} {}'.format(self.first, self.last)
 
+    def position(self):
+        return '{}'.format(self.pos)
+
+    def team_group(self):
+        return '{}'.format(self.team)
+
     # create a method to determine average of hitters
     def average_hit(self):
         return self.hits/self.atbats
