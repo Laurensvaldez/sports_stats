@@ -19,7 +19,7 @@ def display_averages():
         print("\t* Position: {}".format(player.position().upper()))
         print("\t* Team: {}".format(player.team_group().upper()))
         print("\n")
-
+    main_menu_func()
 """
 Let's see which players belong to which tier in batting avg. The players will be split into three teams. Depending 
 their batting avg. \n
@@ -45,16 +45,19 @@ for player in all_players:
     else:
         mid_batting_avg.append(str(round(average_hitting, 3)) + " " + name_hitter.title())
 
-
+# The continue request for the user
 def continue_request():
     category_continue = input("Would you like to continue? (Y/N)")
     if category_continue.lower() == "y":
         category_input()
     elif category_continue.lower() == "n":
         print("I understand, you will be redirected to the Main Menu.")
-        # Write a function that redirects the user to the main menu
+        main_menu_func()
+    else:
+        print("No valid answer was given, please do so.")
+        main_menu_func()
 
-
+# The function for the second
 def category_input():
     print("""
     The following categories are available:
@@ -65,12 +68,15 @@ def category_input():
     5. Quit
     """)
 
+# Asking the user which category he/she would want to see
     category_request = input("Which category would you like to see? ")
     category_request = int(category_request)
+    # If-statement to use the user's answer for the category to show
     if category_request == 1:
         print("\nHigh batting avg. .300 or more:")
         for player in high_batting_avg:
             print(player)
+        # Asking the user if they want to continue
         continue_request()
     elif category_request == 2:
         print("\nMid batting avg. between .200 and .299:")
@@ -98,9 +104,12 @@ def category_input():
     else:
         print("No valid answer was given, please do so.")
         category_input()
+    # Redirecting the user back to the Main Menu
+    main_menu_func()
 
-
+# Category 3: The search request function for the user
 def search_request():
+    # Defining a retry_request function to ask the user if they want to look for another player after a search
     def retry_request():
         question = input("Would you like to search for another player? y/n > ")
         if question.lower() == 'y':
@@ -110,12 +119,15 @@ def search_request():
         else:
             print("Program will be terminated, you did not fill in a valid answer.")
 
+    # Asking the user for input regarding the name and informing the player how to quit in case they want to
     quit_service = "If you want to quit the service fill in Q..."
     question_user = input("Which player would you like to look up? Please fill in the last name of the player. "
                           + quit_service)
 
+    # Sanitizing the input of the user
     if question_user.lower() == "q" or question_user == "":
         print("I understand, this service will be stopped.")
+    # In case the
     elif question_user.lower() not in all_players:
         print("Player not found, please try again.")
         retry_request()
@@ -126,6 +138,8 @@ def search_request():
                 print("Batting average: " + str(round(item.average_hit(), 3)))
                 found_players.append(item.fullname().title() + " " + str(round(item.average_hit(), 3)))
                 retry_request()
+
+    main_menu_func()
 
 
 
@@ -150,9 +164,8 @@ print("""
 later. Please feel free to look around.
 """)
 
+
 # Main menu options
-
-
 def main_menu_func():
     main_menu_request = input("""
     Which function-service would you like to use? Choose between the numbers given per option.
@@ -180,8 +193,10 @@ def main_menu_func():
             print(player)
     elif main_menu_request == 4:
         print("I understand. This service will be terminated")
+        pass
     else:
         print("No valid answer was given, please do so.")
+        continue_request()
 
 
 main_menu_func()
