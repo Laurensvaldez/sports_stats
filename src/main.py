@@ -120,7 +120,7 @@ def search_request():
             print("Program will be terminated, you did not fill in a valid answer.")
 
     # Asking the user for input regarding the name and informing the player how to quit in case they want to
-    quit_service = "If you want to quit the service fill in Q..."
+    quit_service = "If you want to quit the service fill in Q...\n> "
     question_user = input("Which player would you like to look up? Please fill in the last name of the player. "
                           + quit_service)
 
@@ -128,18 +128,14 @@ def search_request():
     if question_user.lower() == "q" or question_user == "":
         print("I understand, this service will be stopped.")
     # In case the
-    elif question_user.lower() not in all_players:
-        print("Player not found, please try again.")
-        retry_request()
     else:
         for item in all_players:
             if item.last in question_user.lower():
                 print("Full name of player: " + item.fullname().title())
                 print("Batting average: " + str(round(item.average_hit(), 3)))
                 found_players.append(item.fullname().title() + " " + str(round(item.average_hit(), 3)))
-                retry_request()
+        retry_request()
 
-    main_menu_func()
 
 
 
@@ -191,6 +187,8 @@ def main_menu_func():
         print("The following players were found and added to the found players list: ")
         for player in found_players:
             print(player)
+        print("You will now be redirected to the Main Menu.")
+        main_menu_func()
     elif main_menu_request == 4:
         print("I understand. This service will be terminated")
         pass
